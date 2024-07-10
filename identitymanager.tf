@@ -8,5 +8,5 @@ resource "azurerm_role_assignment" "this_role_assignment" {
   scope                = azurerm_key_vault.this_keyvault.id
   role_definition_name = "Key Vault Secrets Officer"
   principal_id         = azurerm_user_assigned_identity.this_asigned_identity.principal_id
-  depends_on = [ azurerm_user_assigned_identity.this_asigned_identity ]
+  depends_on           = [azurerm_user_assigned_identity.this_asigned_identity]
 }

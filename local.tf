@@ -1,9 +1,9 @@
-locals{
-    owner = var.owner
-    environment = var.environment
+locals {
+  owner       = var.owner
+  environment = var.environment
 
-tags = {
+  tags = {
     environment = "dynamic"
-    project = "vms"
-}
+    project     = "vms"
+  }
 }
