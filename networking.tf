@@ -14,8 +14,8 @@ resource "azurerm_network_interface" "this_nic" {
   # It needs to be unique for each VM, and the key will provide a unique identifier.
   # each.value is used when refering directly to the name stated in the username.
   # The value in the map (i.e [rasheed", "onas"]) represents the username.
-  
-  
+
+
   for_each            = toset(var.usernames)
   name                = "nic-for-${each.value}"
   location            = azurerm_resource_group.this_rg.location
@@ -29,7 +29,7 @@ resource "azurerm_network_interface" "this_nic" {
   }
 }
 resource "azurerm_public_ip" "this_publicip" {
- for_each = toset(var.usernames)
+  for_each            = toset(var.usernames)
   name                = "public-ip-for-${each.value}"
   resource_group_name = azurerm_resource_group.this_rg.name
   location            = azurerm_resource_group.this_rg.location
