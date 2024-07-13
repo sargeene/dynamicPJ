@@ -1,14 +1,16 @@
 
 
 resource "azurerm_windows_virtual_machine" "this_win_vm" {
-  name                = "win-vm"
+   for_each            = toset(var.usernames)
+  name                = "vm-for-${each.key}"
+  computer_name       = "vm-${each.key}"
   resource_group_name = azurerm_resource_group.this_rg.name
   location            = azurerm_resource_group.this_rg.location
   size                = "Standard_F2"
-  admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
+  admin_username      = each.value
+  admin_password      = azurerm_key_vault_secret.this_vm_secret[each.key].value
   network_interface_ids = [
-    azurerm_network_interface.this_nic.id,
+    azurerm_network_interface.this_nic[eack.key].id,
   ]
 
   os_disk {

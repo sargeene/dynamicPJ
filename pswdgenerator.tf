@@ -8,4 +8,5 @@ resource "random_password" "this_password" {
   min_lower        = 1
   min_special      = 1
   override_special = "!#$%&"
+  depends_on = [azurerm_key_vault.this_keyvault]
 }
