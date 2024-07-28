@@ -6,12 +6,14 @@ resource "azurerm_key_vault" "this_keyvault" {
   tenant_id                  = data.azurerm_client_config.current.tenant_id
   sku_name                   = "premium"
   soft_delete_retention_days = 7
+  
   network_acls {
     default_action             = "Deny"
     bypass                     = "AzureServices"
     ip_rules                   = ["81.105.32.49"]
     virtual_network_subnet_ids = []
   }
+  
 }
 
 resource "azurerm_key_vault_access_policy" "this_rasheed_access_policy" {
